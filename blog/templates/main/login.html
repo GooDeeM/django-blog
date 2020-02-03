@@ -1,0 +1,18 @@
+{% extends "main/layout/basic.html" %}
+
+{% load bootstrap4 %}
+
+{% block title %}Вхід{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <p>Ви вже авторизовані!</p>
+  {% else %}
+    <form method="post">
+      {% csrf_token %}
+      {% bootstrap_form form layout='horisontal' %}
+      <input type="hidden" name="next" value="{{ next }}">
+      {% buttons submit='Увійти' %}{% endbuttons %}
+    </form>
+  {% endif %}
+{% endblock %}

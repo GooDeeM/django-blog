@@ -1,0 +1,60 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Головна{% endblock %}</title>
+    <meta name="viewpoert" content="width=device-vidth, initial-scale=1, shrink-to-fit=no">
+    {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static "main/style.css" %}">
+    {% bootstrap_javascript jquery='slim' %}
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">BLOG</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Coming soon<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Coming soon</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Акаунт
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'main:profile' %}">Профіль</a>
+              <a class="dropdown-item" href="{% url 'main:profile_change' %}">Редагувати профіль</a>
+              <a class="dropdown-item" href="{% url 'main:password_change' %}">Змінити пароль</a>
+              <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'main:logout' %}">Вийти</a>
+              </div>
+          </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'main:login' %}">Вхід</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Реєстрація</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+  </body>
+</html>
