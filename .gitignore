@@ -128,4 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-./blog/settings.py
+./blog/blog/settings.py
